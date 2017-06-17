@@ -1,0 +1,6 @@
+development:
+  clients:
+    default:
+      database: auth_with_cuba_development
+      hosts:
+        - localhost:27017
