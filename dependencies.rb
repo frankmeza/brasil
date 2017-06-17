@@ -1,4 +1,5 @@
 require 'cuba'
+require 'cuba/safe'
 require 'mongoid'
 require 'shield'
 
