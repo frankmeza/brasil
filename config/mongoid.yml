@@ -4,3 +4,10 @@ development:
       database: auth_with_cuba_development
       hosts:
         - localhost:27017
+
+test:
+  clients:
+    default:
+      database: auth_with_cuba_development_test
+      hosts:
+        - localhost:27017
