@@ -2,8 +2,12 @@ require_relative '../test_helper.rb'
 
 class RackTest
 
-  def test_get_users_how
-    get '/users/how'
+  def teardown
+    clean_data
+  end
+
+  def test_get_users
+    get '/users'
     assert last_response.ok?
   end
 

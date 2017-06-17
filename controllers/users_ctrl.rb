@@ -2,7 +2,8 @@
 
 UsersCtrl = Cuba.new do
   on get, root do
-    res.write 'wow, so lit'
+    emails = User.all.map(&:email)
+    res.write emails
   end
 
   on get, 'how' do
