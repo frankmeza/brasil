@@ -5,6 +5,11 @@ Mongoid.load!("#{Dir.pwd}/config/mongoid.yml")
 
 Cuba.define do
   on get, root do
-    res.write "hella lit"
+    lit = { lit: true }
+    res.write lit.to_json
+  end
+
+  on get, 'users' do
+    run UsersCtrl
   end
 end
