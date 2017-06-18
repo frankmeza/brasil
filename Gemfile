@@ -7,4 +7,5 @@ gem 'mongoid', '~> 4.0.0'
 gem 'shield'
 
 gem 'factory_girl'
+gem 'shotgun'
 

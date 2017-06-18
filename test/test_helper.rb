@@ -11,7 +11,7 @@ Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new ]
 
 require_relative '../app'
 
-FactoryGirl.definition_file_paths = %w{./factories ./test/factories}
+FactoryGirl.definition_file_paths = %w{ ./test/factories }
 FactoryGirl.find_definitions
 
 class RackTest < MiniTest::Test

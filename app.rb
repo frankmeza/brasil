@@ -8,7 +8,7 @@ Cuba.plugin Cuba::Safe
 Cuba.define do
   # no namespace
   on get, root do
-    lit = { lit: true }
+    lit = { lit: false }
     res.write lit.to_json
   end
 
