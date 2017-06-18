@@ -15,6 +15,8 @@ GEM
     connection_pool (2.2.1)
     cuba (3.2.0)
       rack
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
     i18n (0.8.4)
     minitest (5.10.2)
     mongoid (4.0.2)
@@ -40,6 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   cuba (~> 3.2.0)
+  factory_girl
   mongoid (~> 4.0.0)
   shield
 

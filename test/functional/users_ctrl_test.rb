@@ -7,6 +7,7 @@ class RackTest
   end
 
   def test_get_users
+    frank = create(:user)
     get '/users'
     assert last_response.ok?
   end
