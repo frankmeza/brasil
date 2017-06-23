@@ -5,7 +5,7 @@ AuthCtrl = Cuba.new do
     a, b = req.params["a"], req.params["b"]
     user, pass = req.params['username'], req.params['password']
     rqb = req.body.read
-    puts rqb
+    puts rqb.class
     res.write rqb
   end
 
