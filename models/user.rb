@@ -13,7 +13,7 @@ class User
     find(id)
   end
 
-  def email
-    email
-  end
+  # def email
+  #   email
+  # end
 end

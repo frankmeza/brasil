@@ -18,6 +18,7 @@ GEM
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     i18n (0.8.4)
+    jwt (1.5.6)
     minitest (5.10.2)
     mongoid (4.0.2)
       activemodel (~> 4.0)
@@ -45,6 +46,7 @@ PLATFORMS
 DEPENDENCIES
   cuba (~> 3.2.0)
   factory_girl
+  jwt
   mongoid (~> 4.0.0)
   shield
   shotgun
