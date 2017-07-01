@@ -2,19 +2,14 @@
 
 AuthCtrl = Cuba.new do
   on post, 'auth' do
-    a, b = req.params["a"], req.params["b"]
-    user, pass = req.params['username'], req.params['password']
-    rqb = req.body.read
-    puts rqb.class
-    res.write rqb
-  end
-
-  on post, root, param('ytho') do |ytho|
-    res.write "#{ytho}"
+    input = req.body.read
+    body = JSON.parse(input)
+    if login User, body['login'], body['password']
+    # user = User.authenticate body['login'], body['password']
+    res.write user.to_json
   end
 end
 
 Cuba.define do
   run AuthCtrl
 end
-# end
