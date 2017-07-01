@@ -3,10 +3,11 @@ class User
   include Mongoid::Document
 
   field :email, type: String
+  field :username, type: String
   field :crypted_password, type: String
 
   def self.fetch(identifier)
-    where(email: identifier).first
+    with(:email, identifier) || with(:username, identifier)
   end
 
   def self.[] (id)
