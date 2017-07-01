@@ -7,7 +7,7 @@ class User
   field :crypted_password, type: String
 
   def self.fetch(identifier)
-    with(:email, identifier) || with(:username, identifier)
+    where(email: identifier).first || where(username: identifier).first
   end
 
   def self.[] (id)
