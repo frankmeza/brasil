@@ -22,7 +22,7 @@ Cuba.define do
   end
 
   # unless authenticated?
-  on 'login' do
+  on 'auth' do
     run AuthCtrl
   end
   # end

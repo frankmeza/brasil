@@ -1,7 +1,7 @@
 # auth_controller
 
 AuthCtrl = Cuba.new do
-  on post, 'auth' do
+  on post, 'login' do
     input = req.body.read
     body = JSON.parse(input)
 
@@ -11,6 +11,12 @@ AuthCtrl = Cuba.new do
     end
 
     res.write auth_token.to_json
+  end
+
+  on get, 'logout' do
+    logout User
+    logged_out = { logged_out: true }
+    res.write logged_out.to_json
   end
 end
 

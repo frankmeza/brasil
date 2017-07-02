@@ -24,4 +24,9 @@ class RackTest < MiniTest::Test
   def clean_data
     Mongoid::Config.purge!
   end
+
+  def login_this(user)
+    credentials = { login: user.username, password: 'password'}
+    post '/auth/login', credentials.to_json
+  end
 end
