@@ -2,6 +2,7 @@
 
 AuthCtrl = Cuba.new do
   on post, 'login' do
+    set_response_as_json
     input = req.body.read
     body = JSON.parse(input)
 
@@ -17,6 +18,7 @@ AuthCtrl = Cuba.new do
   end
 
   on get, 'logout' do
+    set_response_as_json
     logout User
     logged_out = { logged_out: true }
     res.write logged_out.to_json

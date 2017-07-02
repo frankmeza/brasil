@@ -2,6 +2,7 @@
 
 UsersCtrl = Cuba.new do
   on get, root do
+    set_response_as_json
     emails = User.all.map(&:email)
     res.write emails
   end
