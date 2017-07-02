@@ -13,8 +13,4 @@ class User
   def self.[] (id)
     find(id)
   end
-
-  # def email
-  #   email
-  # end
 end

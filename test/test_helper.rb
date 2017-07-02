@@ -26,7 +26,7 @@ class RackTest < MiniTest::Test
   end
 
   def login_this(user)
-    credentials = { login: user.username, password: 'password'}
+    credentials = { login: user.username, password: 'password' }
     post '/auth/login', credentials.to_json
   end
 end
