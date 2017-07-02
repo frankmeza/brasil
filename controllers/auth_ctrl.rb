@@ -19,7 +19,6 @@ AuthCtrl = Cuba.new do
   on get, 'logout' do
     logout User
     logged_out = { logged_out: true }
-
     res.write logged_out.to_json
   end
 end

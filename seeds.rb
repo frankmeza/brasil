@@ -1,5 +1,4 @@
 require './dependencies'
-# require './config/mongoid.yml'
 require 'mongoid'
 require 'faker'
 
@@ -11,7 +10,11 @@ end
 # empty the database
 Mongoid::Config.purge!
 
-# seed data
+# # # # # # # #
+#  seed data  #
+# # # # # # # #
+
+# User
 100.times do
   User.create!(
     username: Faker::Name.first_name,
