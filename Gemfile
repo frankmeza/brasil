@@ -8,4 +8,5 @@ gem 'shield'
 gem 'jwt'
 gem 'factory_girl'
 gem 'shotgun'
+gem 'faker'
 
