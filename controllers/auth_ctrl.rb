@@ -8,9 +8,12 @@ AuthCtrl = Cuba.new do
     if login User, body['login'], body['password']
       token = JWT.encode body['login'], body['password'], 'HS256'
       auth_token = { token: token }
+      res.write auth_token.to_json
+    else
+      errors = { errors: 'Your login credentials are not correct.' }
+      res.status = '401'
+      res.write errors.to_json
     end
-
-    res.write auth_token.to_json
   end
 
   on get, 'logout' do
