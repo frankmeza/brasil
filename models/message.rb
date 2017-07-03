@@ -9,10 +9,11 @@ class Message
 
   def self.success(key)
     { success: self.get_msg(key) }
+  end
 
   def self.messages
     {
-      invalid_credentials: 'Your login credentials are not correct.'
+      invalid_credentials: 'Your login credentials are not correct.',
       jwt_missing: 'Your request header is missing the "JWT_TOKEN" header.'
     }
   end

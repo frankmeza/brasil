@@ -15,7 +15,9 @@ class RackTest
     credentials = { login: @user.username, password: 'password' }
     post '/auth/login', credentials.to_json
     payload = JSON.parse last_response.body
-    expected_token = JWT.encode credentials[:login], credentials[:password], 'HS256'
+
+    user = User.fetch credentials[:login]
+    expected_token = AuthCtrl.encode_data(user.get_data)
 
     assert last_response.ok?
     assert_equal expected_token, payload['token']
@@ -33,7 +35,6 @@ class RackTest
   # GET '/auth/logout'
   def test_logout
     login_this @user
-
     get 'auth/logout'
     assert last_response.ok?
     logged_out = { logged_out: true }

@@ -1,6 +1,6 @@
 # auth_controller
 
-AuthCtrl = Cuba.new do
+AuthCtrl = Brasil.new do
   on post, 'login' do
     set_response_as_json
     input = req.body.read
@@ -27,6 +27,6 @@ AuthCtrl = Cuba.new do
   end
 end
 
-Cuba.define do
+Brasil.define do
   run AuthCtrl
 end

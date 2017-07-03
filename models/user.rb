@@ -13,4 +13,8 @@ class User
   def self.[] (id)
     find(id)
   end
+
+  def get_data
+    { username: username, email: email }
+  end
 end

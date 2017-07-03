@@ -3,13 +3,13 @@ require './dependencies'
 ENV['RACK_ENV'] ||= "development"
 Mongoid.load!("#{Dir.pwd}/config/mongoid.yml")
 
-Cuba.use Rack::Session::Cookie, secret: "foo"
-Cuba.plugin Cuba::Safe
+Brasil.use Rack::Session::Cookie, secret: "foo"
+Brasil.plugin Brasil::Safe
 
-Cuba.use Shield::Middleware
-Cuba.plugin Shield::Helpers
+Brasil.use Shield::Middleware
+Brasil.plugin Shield::Helpers
 
-Cuba.define do
+Brasil.define do
   # no namespace, unauthenticated
   on get, root do
     set_response_as_json

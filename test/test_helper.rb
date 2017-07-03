@@ -18,7 +18,7 @@ class RackTest < MiniTest::Test
   include FactoryGirl::Syntax::Methods
 
   def app
-    Cuba
+    Brasil
   end
 
   def clean_data

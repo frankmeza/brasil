@@ -6,7 +6,7 @@ require 'jwt'
 
 require './secrets'
 require './models/message'
-require './models/cuba'
+require './models/brasil'
 
 require './models/user'
 

@@ -1,6 +1,6 @@
 # users_controller
 
-UsersCtrl = Cuba.new do
+UsersCtrl = Brasil.new do
   on get, root do
     set_response_as_json
     emails = User.all.map(&:email)
@@ -16,6 +16,6 @@ UsersCtrl = Cuba.new do
   end
 end
 
-Cuba.define do
+Brasil.define do
   run UsersCtrl
 end
