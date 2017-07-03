@@ -15,7 +15,7 @@ AuthCtrl = Brasil.new do
       res.write auth_token.to_json
     else
       set_response_status 401
-      res.write Message.error('invalid_credentials').to_json
+      res.write Message.error('credentials_invalid').to_json
     end
   end
 

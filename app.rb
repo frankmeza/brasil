@@ -13,18 +13,16 @@ Brasil.define do
   # no namespace, unauthenticated
   on get, root do
     set_response_as_json
-    if authenticated User
+    halt respond_with_401 unless has_jwt?
+
+    begin is_valid_token? env['HTTP_JWT_TOKEN']
       auth_status = { authenticated: true }
-    else
-      auth_status = { authenticated: false }
+      res.write auth_status.to_json
+    rescue
+      res.write Message.error('jwt_invalid').to_json
     end
-    res.write auth_status.to_json
   end
 
-  unless has_jwt?
-    set_response_status 401
-    res.write Message.error('jwt_missing').to_json
-  end
   # users/
   on 'users' do
     run UsersCtrl
