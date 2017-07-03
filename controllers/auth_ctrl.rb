@@ -14,9 +14,8 @@ AuthCtrl = Cuba.new do
       auth_token = { token: token }
       res.write auth_token.to_json
     else
-      errors = { errors: Message.get_msg('invalid_credentials') }
-      res.status = '401'
-      res.write errors.to_json
+      set_response_status 401
+      res.write Message.error('invalid_credentials').to_json
     end
   end
 

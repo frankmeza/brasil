@@ -1,21 +1,21 @@
 # helpers
 
-module Helpers
+module ResponseHelpers
   def set_response_as_json
     res.headers['Content-Type'] = 'application/json'
   end
 
-  def get_msg(key)
-    puts ENV['MESSAGES'][key].to_s
+  def set_response_status(code)
+    res.status = code
   end
 end
 
 module AuthHelpers
   def has_jwt?
-    req.headers['JWT_TOKEN'].present?
+    ENV['HTTP_JWT_TOKEN'].present?
   end
 
-  def encode_user_data(data)
+  def encode_data(data)
     JWT.encode data, ENV['JWT_SECRET'], 'HS256'
   end
 
@@ -31,6 +31,6 @@ module AuthHelpers
 end
 
 class Cuba
-  include Helpers
+  include ResponseHelpers
   include AuthHelpers
 end

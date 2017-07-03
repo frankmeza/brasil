@@ -12,10 +12,19 @@ Cuba.plugin Shield::Helpers
 Cuba.define do
   # no namespace, unauthenticated
   on get, root do
-    lit = { lit: false }
-    res.write lit.to_json
+    set_response_as_json
+    if authenticated User
+      auth_status = { authenticated: true }
+    else
+      auth_status = { authenticated: false }
+    end
+    res.write auth_status.to_json
   end
 
+  unless has_jwt?
+    set_response_status 401
+    res.write Message.error('jwt_missing').to_json
+  end
   # users/
   on 'users' do
     run UsersCtrl
