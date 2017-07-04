@@ -4,7 +4,8 @@ class RackTest
 
   def setup
     @user = create(:user)
-    @jwt_token = AuthCtrl.encode_data(@user.get_data)
+    token = AuthCtrl.encode_data(@user.get_data)
+    @jwt_header = {"JWT_TOKEN" => token}
   end
 
   def teardown
@@ -13,10 +14,10 @@ class RackTest
 
   def test_get_users
     users = create_list(:user, 10)
-    get '/users', {}, {"JWT_TOKEN" => @jwt_token}
-    assert_equal 200, res.status
-    # this accounts for the user created in setup
-    assert_equal users.size + 1, res_as_json['users'].size
+    get '/users', {}, @jwt_header
+    assert_equal(200, res.status)
+    # the +1 accounts for the user created in setup
+    assert_equal(users.size + 1, res_as_json['users'].size)
   end
 
   # def test_post_users

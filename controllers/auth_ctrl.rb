@@ -6,11 +6,11 @@ AuthCtrl = Brasil.new do
     input = req.body.read
     body = JSON.parse(input)
 
-    if login User, body['login'], body['password']
+    if login(User, body['login'], body['password'])
       user = User.fetch(body['login'])
       token = encode_data(user.get_data)
       auth_token = { token: token }
-      set_response_status 201
+      set_response_status(201)
       res.write auth_token.to_json
     else
       halt respond_with(401, 'credentials_invalid')

@@ -35,6 +35,6 @@ class RackTest < MiniTest::Test
   end
 
   def res_as_json
-    JSON.parse res.body
+    JSON.parse(res.body)
   end
 end

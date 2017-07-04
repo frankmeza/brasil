@@ -25,7 +25,7 @@ Brasil.define do
   # users/ # auth needed
   on 'users' do
     halt respond_with(401, 'jwt_missing') unless has_jwt?
-    begin is_valid_token? env['JWT_TOKEN']
+    begin is_valid_token?(env['JWT_TOKEN'])
       run UsersCtrl
     rescue
       res.write Message.error('jwt_invalid').to_json
