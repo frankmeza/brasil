@@ -33,7 +33,7 @@ class RackTest
     assert_equal 401, res.status
 
     errors = Message.get_msg('credentials_invalid')
-    assert_equal errors.to_json, res.body
+    assert_equal errors, res.body
   end
 
   # GET '/auth/logout'

@@ -4,7 +4,8 @@ UsersCtrl = Brasil.new do
   on get, root do
     set_response_as_json
     emails = User.all.map(&:email)
-    res.write emails
+    user_emails = { users: emails }
+    res.write user_emails.to_json
   end
 
   on get, 'how' do
