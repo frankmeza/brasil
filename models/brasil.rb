@@ -21,8 +21,8 @@ module AuthJwtHelpers
     JWT.decode token, ENV['JWT_SECRET'], true, { algorithm: 'HS256' }
   end
 
-  def respond_with_401
-    ['401', {"Content-Type" => "application/json"}, [Message.error('jwt_missing').to_json]]
+  def respond_with(status, message_key)
+    ['401', {"Content-Type" => "application/json"}, [Message.get_msg(message_key).to_json]]
   end
 
   def is_valid_token?(token)
