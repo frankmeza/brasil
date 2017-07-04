@@ -8,9 +8,7 @@ AuthCtrl = Brasil.new do
 
     if login User, body['login'], body['password']
       user = User.fetch(body['login'])
-      user_data = { username: user.username, email: user.email }
-
-      token = encode_data(user_data)
+      token = encode_data(user.get_data)
       auth_token = { token: token }
       res.write auth_token.to_json
     else
