@@ -10,30 +10,25 @@ Brasil.use Shield::Middleware
 Brasil.plugin Shield::Helpers
 
 Brasil.define do
-  # no namespace, unauthenticated
+  # no namespace # no auth needed
   on get, root do
     set_response_as_json
     root_message = { root_path: true }
     res.write root_message.to_json
   end
 
-    # halt respond_with_401 unless has_jwt?
-
-    # begin is_valid_token? env['HTTP_JWT_TOKEN']
-    #   auth_status = { authenticated: true }
-    #   res.write auth_status.to_json
-    # rescue
-    #   res.write Message.error('jwt_invalid').to_json
-    # end
-
-  # users/
-  on 'users' do
-    run UsersCtrl
-  end
-
-  # unless authenticated?
+  # auth/ # no auth needed
   on 'auth' do
     run AuthCtrl
   end
-  # end
+
+  # users/ # auth needed
+  on 'users' do
+    halt respond_with(401, 'jwt_missing') unless has_jwt?
+    begin is_valid_token? env['JWT_TOKEN']
+      run UsersCtrl
+    rescue
+      res.write Message.error('jwt_invalid').to_json
+    end
+  end
 end
