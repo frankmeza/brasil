@@ -13,15 +13,18 @@ Brasil.define do
   # no namespace, unauthenticated
   on get, root do
     set_response_as_json
-    halt respond_with_401 unless has_jwt?
-
-    begin is_valid_token? env['HTTP_JWT_TOKEN']
-      auth_status = { authenticated: true }
-      res.write auth_status.to_json
-    rescue
-      res.write Message.error('jwt_invalid').to_json
-    end
+    root_message = { root_path: true }
+    res.write root_message.to_json
   end
+
+    # halt respond_with_401 unless has_jwt?
+
+    # begin is_valid_token? env['HTTP_JWT_TOKEN']
+    #   auth_status = { authenticated: true }
+    #   res.write auth_status.to_json
+    # rescue
+    #   res.write Message.error('jwt_invalid').to_json
+    # end
 
   # users/
   on 'users' do
