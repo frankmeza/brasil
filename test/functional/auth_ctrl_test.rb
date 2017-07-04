@@ -4,6 +4,9 @@ class RackTest
 
   def setup
     @user = create(:user)
+    @correct_headers = AuthCtrl.encode_data(@user.get_data)
+    # how to set headers for request
+    # header('HTTP_JWT_TOKEN', @correct_headers)
   end
 
   def teardown
@@ -11,9 +14,8 @@ class RackTest
   end
 
   # POST '/auth/login'
-  def test_login_authenticate_success
+  def test_login_success
     credentials = { login: @user.username, password: 'password' }
-
     post '/auth/login', credentials.to_json
     assert_equal 201, res.status
 
@@ -23,13 +25,12 @@ class RackTest
     assert_equal expected_token, payload['token']
   end
 
-  def test_login_authenticate_fail
+  def test_login_fail
     bad_credentials = { login: @user.username, password: 'wrongpassword' }
-
     post '/auth/login', bad_credentials.to_json
     assert_equal 401, res.status
 
-    errors = { errors: 'Your login credentials are not correct.' }
+    errors = Message.get_msg('credentials_invalid')
     assert_equal errors.to_json, res.body
   end
 
