@@ -4,9 +4,11 @@ class RackTest
 
   def setup
     @user = create(:user)
-    @correct_headers = AuthCtrl.encode_data(@user.get_data)
-    # how to set headers for request
+    # how to set request headers
+    # @correct_headers = AuthCtrl.encode_data(@user.get_data)
     # header('HTTP_JWT_TOKEN', @correct_headers)
+    # how to read response headers
+    # res.headers['MYHEADER']
   end
 
   def teardown
