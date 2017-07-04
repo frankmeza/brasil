@@ -2,11 +2,11 @@ ENV['RACK_ENV'] = 'test'
 $VERBOSE=nil
 
 require_relative '../app'
-require 'minitest/autorun'
-require 'rack/test'
-require 'minitest/reporters'
-require 'factory_girl'
 require_relative '../dependencies'
+require 'minitest/reporters'
+require 'minitest/autorun'
+require 'factory_girl'
+require 'rack/test'
 require 'faker'
 
 Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new ]
@@ -28,5 +28,9 @@ class RackTest < MiniTest::Test
   def login_this(user)
     credentials = { login: user.username, password: 'password' }
     post '/auth/login', credentials.to_json
+  end
+
+  def res
+    last_response
   end
 end

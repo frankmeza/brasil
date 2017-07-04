@@ -10,6 +10,7 @@ AuthCtrl = Brasil.new do
       user = User.fetch(body['login'])
       token = encode_data(user.get_data)
       auth_token = { token: token }
+      set_response_status 201
       res.write auth_token.to_json
     else
       set_response_status 401
