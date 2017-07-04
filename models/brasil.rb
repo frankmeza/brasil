@@ -8,7 +8,7 @@ module ResponseHelpers
   end
 end
 
-module AuthHelpers
+module AuthJwtHelpers
   def has_jwt?
     env['HTTP_JWT_TOKEN'].present?
   end
@@ -33,6 +33,6 @@ module AuthHelpers
 end
 
 class Brasil < Cuba
-  include AuthHelpers
+  include AuthJwtHelpers
   include ResponseHelpers
 end
