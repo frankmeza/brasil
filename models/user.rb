@@ -1,15 +1,17 @@
 class User
   include Shield::Model
   include Mongoid::Document
-  include ActiveModel::Validations
+  # include ActiveModel::Validations
 
-  attr_accessor :username, :email
+  # attr_reader :username, :email
 
-  validates_each :username, :email do |model, attr, value|
-    if value == nil || value == ''
-      model.errors.add(attr, 'cannot be blank.')
-    end
-  end
+  # validates_each :username, :email do |model, attr, value|
+  #   puts attr
+  #   puts value
+  #   if value == nil || value == ''
+  #     model.errors.add(attr, 'cannot be blank.')
+  #   end
+  # end
 
   field :is_admin, type: Boolean, default: false
   field :email, type: String
@@ -18,7 +20,7 @@ class User
 
 
   def self.fetch(identifier)
-    find(email: identifier) || find(username: identifier)
+    where(email: identifier).first || where(username: identifier).first
   end
 
   def self.[](id)
