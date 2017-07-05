@@ -10,6 +10,7 @@ AuthCtrl = Brasil.new do
       user = User.fetch(body['login'])
       token = encode_data(user.get_data)
       auth_token = { token: token }
+
       set_response_status(201)
       res.write auth_token.to_json
     else
@@ -19,7 +20,7 @@ AuthCtrl = Brasil.new do
 
   on get, 'logout' do
     set_response_as_json
-    logout User
+    logout(User)
     logged_out = { logged_out: true }
     res.write logged_out.to_json
   end

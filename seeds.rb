@@ -31,7 +31,7 @@ alpha = User.create!(
   password: 'password'
 )
 
-{:username=>"alpha", :email=>"alpha@email.com"}
+# {:username=>"alpha", :email=>"alpha@email.com"}
 # JWT_TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFscGhhIiwiZW1haWwiOiJhbHBoYUBlbWFpbC5jb20ifQ.rqbMh-9KihAuLJmKAyHWptmy2DJMnLA-nhH9u4DRW9A
 
 # Users

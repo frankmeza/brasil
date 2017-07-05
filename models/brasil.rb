@@ -10,7 +10,7 @@ end
 
 module AuthJwtHelpers
   def has_jwt?
-    env['JWT_TOKEN'].present?
+    env['HTTP_JWT_TOKEN'].present?
   end
 
   def encode_data(data)
@@ -26,11 +26,26 @@ module AuthJwtHelpers
     [status.to_s, as_json, [Message.get_msg(message_key).to_json]]
   end
 
-  def is_valid_token?(token)
+  def fetch_user_from_token(token)
     data = decode_jwt_token(token)
     user = User.fetch(data[0]['email'])
+    { token: token, user: user }
+  end
+
+  def is_valid_token?(token)
+    # fetched = fetch_user_from_token(token)
+    data = decode_jwt_token(token)
+    # fetched[:user]
+    user = User.fetch(data[0]['email'])
+    # up can be moved out
     user.username == data[0]['username']
   end
+
+  # def is_admin?
+  #   data = decode_jwt_token(token)
+  #   user = User.fetch(data[0]['email'])
+  #   user.is_admin
+  # end
 end
 
 class Brasil < Cuba

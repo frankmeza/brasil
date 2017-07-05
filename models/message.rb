@@ -13,6 +13,7 @@ class Message
 
   def self.messages
     {
+      admin_invalid: 'Your token is not an admin token.'
       credentials_invalid: 'Your login credentials are not correct.',
       jwt_missing: 'Your request header is missing the "JWT_TOKEN" header.',
       jwt_invalid: 'Your request header "JWT_TOKEN" is invalid.'
