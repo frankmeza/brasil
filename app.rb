@@ -25,8 +25,10 @@ Brasil.define do
   # users/ # auth needed
   on 'users' do
     halt respond_with(401, 'jwt_missing') unless has_jwt?
-    halt respond_with(401, 'jwt_invalid') unless is_valid_token?(env['HTTP_JWT_TOKEN'])
-    # halt respond_with(403, 'admin_invalid') unless is_admin?
+
+    token = env['HTTP_JWT_TOKEN']
+    halt respond_with(401, 'jwt_invalid') unless is_valid_token?(token)
+    halt respond_with(403, 'admin_invalid') unless is_valid_admin_token?(token)
 
     run UsersCtrl
   end

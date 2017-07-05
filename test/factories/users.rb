@@ -3,5 +3,9 @@ FactoryGirl.define do
     username { Faker::Name.first_name }
     email { Faker::Internet.email }
     password 'password'
+
+    trait :admin do
+      is_admin true
+    end
   end
 end
