@@ -29,6 +29,5 @@ Brasil.define do
     # halt respond_with(403, 'admin_invalid') unless is_admin?
 
     run UsersCtrl
-    end
   end
 end

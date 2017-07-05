@@ -4,7 +4,7 @@ require 'faker'
 
 Mongoid.configure do
   env = ENV['RACK_ENV'] || 'development'
-  Mongoid.load! './config/mongoid.yml', env
+  Mongoid.load!('./config/mongoid.yml', env)
 end
 
 # empty the database
@@ -13,7 +13,6 @@ Mongoid::Config.purge!
 # # # # # # # #
 #  seed data  #
 # # # # # # # #
-
 
 admin = User.create!(
   username: 'ADMIN',
