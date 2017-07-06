@@ -27,9 +27,10 @@ Brasil.define do
 
   # users/ # auth needed
   on 'users' do
-    unless is_valid_admin_token?(env['HTTP_JWT_TOKEN'])
+    if is_valid_admin_token?(env['HTTP_JWT_TOKEN'])
+      run UsersCtrl
+    else
       halt respond_with(403, 'admin_invalid')
     end
-    run UsersCtrl
   end
 end
