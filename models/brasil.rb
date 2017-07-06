@@ -26,27 +26,15 @@ module AuthJwtHelpers
     [status.to_s, as_json, [Message.get_msg(message_key).to_json]]
   end
 
-  def fetch_user_from_token(token)
-    data = decode_jwt_token(token)
-    user = User.fetch(data[0]['email'])
-    { token: token, user: user }
-  end
-
   def is_valid_token?(token)
-    # fetched = fetch_user_from_token(token)
     data = decode_jwt_token(token)
-    # fetched[:user]
     user = User.fetch(data[0]['email'])
-    # up can be moved out
     user.username == data[0]['username']
   end
 
   def is_valid_admin_token?(token)
-    # fetched = fetch_user_from_token(token)
     data = decode_jwt_token(token)
-    # fetched[:user]
     user = User.fetch(data[0]['email'])
-    # up can be moved out
     user.username == data[0]['username'] && user.is_admin
   end
 end
