@@ -8,8 +8,10 @@ UsersCtrl = Brasil.new do
     res.write user_emails.to_json
   end
 
-  on get, 'how' do
-    res.write 'wow, how'
+  on get, ':username' do |username|
+    set_response_as_json
+    user = User.fetch_by_username(username)
+    res.write user.to_json
   end
 
   on post, 'lit', param('lit') do |lit|
