@@ -1,6 +1,9 @@
+require_relative '../lib/serializer'
+
 class User
   include Shield::Model
   include Mongoid::Document
+  include Serializer
 
   field :is_admin, type: Boolean, default: false
   field :email, type: String
@@ -8,14 +11,12 @@ class User
   field :crypted_password, type: String
 
   validates_each :username, :email do |model, attr, value|
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
     if value == nil || value == ''
       model.errors.add(attr, 'cannot be blank.')
     end
 
     if attr == 'email'
-      unless value =~ VALID_EMAIL_REGEX
+      unless value =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
         model.errors.add(attr, 'is not valid.')
       end
     end
