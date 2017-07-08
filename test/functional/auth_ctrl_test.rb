@@ -17,7 +17,7 @@ class RackTest
     assert_equal(201, res.status)
 
     user = User.fetch(credentials[:login])
-    expected_token = AuthCtrl.encode_data(user.get_data)
+    expected_token = AuthCtrl.encode_data(user.data_for_token)
     assert_equal(expected_token, res_as_json['token'])
   end
 

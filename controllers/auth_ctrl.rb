@@ -7,7 +7,7 @@ AuthCtrl = Brasil.new do
 
     if login(User, body['login'], body['password'])
       user = User.fetch(body['login'])
-      token = encode_data(user.get_data)
+      token = encode_data(user.data_for_token)
       set_response_status(201)
       write_res_as_json(token: token)
     else

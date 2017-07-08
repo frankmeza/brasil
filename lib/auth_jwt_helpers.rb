@@ -4,7 +4,7 @@ module AuthJwtHelpers
   end
 
   def encode_data(data)
-    data[:exp] = Time.now.to_i + 72000
+    data[:exp] = Time.now.to_i + 14400 # 4 hours
     JWT.encode(data, $JWT_SECRET, 'HS256')
   end
 
@@ -25,7 +25,8 @@ module AuthJwtHelpers
 
   def is_valid_admin_token?(token)
     data = decode_jwt_token(token)
-    user = User.fetch(data[0]['email'])
-    user.username == data[0]['username'] && user.is_admin
+    user_id_from_token = data[0]['id']['$oid']
+    user = User.[](user_id_from_token)
+    user.id.to_s == user_id_from_token && user.is_admin
   end
 end

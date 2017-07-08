@@ -46,10 +46,10 @@ end
 puts 'Seeding is complete.'
 puts 'Admin data: #=>'
 puts admin.get_data
-puts "JWT_TOKEN: #{AuthCtrl.encode_data(admin.get_data)}"
+puts "JWT_TOKEN: #{AuthCtrl.encode_data(admin.data_for_token)}"
 
 puts '##########'
 
 puts 'Alpha User data: #=>'
 puts alpha.get_data
-puts "JWT_TOKEN: #{AuthCtrl.encode_data(alpha.get_data)}"
+puts "JWT_TOKEN: #{AuthCtrl.encode_data(alpha.data_for_token)}"

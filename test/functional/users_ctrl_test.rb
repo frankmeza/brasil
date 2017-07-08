@@ -6,7 +6,7 @@ class RackTest
     @user = create(:user)
     @admin = create(:user, :admin)
     @users = create_list(:user, 2)
-    admin_token = AuthCtrl.encode_data(@admin.get_data)
+    admin_token = AuthCtrl.encode_data(@admin.data_for_token)
     @jwt_admin = {"HTTP_JWT_TOKEN" => admin_token}
   end
 
@@ -24,7 +24,7 @@ class RackTest
 
   # GET /users
   def test_users_root_user_fail
-    user_token = AuthCtrl.encode_data(@user.get_data)
+    user_token = AuthCtrl.encode_data(@user.data_for_token)
     get '/users', {}, {"HTTP_JWT_TOKEN" => user_token}
     assert_equal(403, res.status)
     assert_equal('Your token is not an admin token.', res_as_json)
