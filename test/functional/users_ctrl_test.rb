@@ -32,18 +32,18 @@ class RackTest
 
   # GET /users/:username
   def test_user_show_by_username
-    get "/users/#{@user.username}", {}, @jwt_admin
+    get "/users/username/#{@user.username}", {}, @jwt_admin
     assert_equal(200, res.status)
-    assert_equal(@user.email, res_as_json['email'])
-    assert_equal(@user.username, res_as_json['username'])
+    assert_equal(@user.email, res_as_json['user']['email'])
+    assert_equal(@user.username, res_as_json['user']['username'])
   end
 
   # GET /users/id/:id
   def test_user_show_by_id
     get "/users/id/#{@user.id}", {}, @jwt_admin
     assert_equal(200, res.status)
-    assert_equal(@user.email, res_as_json['email'])
-    assert_equal(@user.username, res_as_json['username'])
+    assert_equal(@user.email, res_as_json['user']['email'])
+    assert_equal(@user.username, res_as_json['user']['username'])
   end
 
   # def test_update_user

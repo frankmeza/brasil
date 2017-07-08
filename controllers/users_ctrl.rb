@@ -31,7 +31,7 @@ UsersCtrl = Brasil.new do
       end
     end
 
-    on get, '/username/:username' do |username|
+    on get, 'username/:username' do |username|
       u = User.fetch_by_username(username)
       user = u.serialize(:id, :username, :email)
       write_res_as_json({ user: u })
