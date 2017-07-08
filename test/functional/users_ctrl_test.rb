@@ -46,10 +46,10 @@ class RackTest
     assert_equal(@user.username, res_as_json['user']['username'])
   end
 
-  # PUT /users/id/:id
+  # PATCH /users/id/:id
   def test_update_user_success
     new_username = { username: 'updated' }
-    put "/users/id/#{@user.id}", new_username.to_json, @jwt_admin
+    patch "/users/id/#{@user.id}", new_username.to_json, @jwt_admin
     assert_equal(204, res.status)
   end
 

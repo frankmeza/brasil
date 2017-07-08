@@ -23,7 +23,7 @@ UsersCtrl = Brasil.new do
       write_res_as_json(user: user)
     end
 
-    on put, 'id/:id' do |id|
+    on patch, 'id/:id' do |id|
       body = parse_req_as_json
       begin
         user = User.[](id)
