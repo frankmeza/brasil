@@ -7,34 +7,42 @@ UsersCtrl = Brasil.new do
     set_response_as_json
 
     on get, root do
-      uu = User.all.map do |u|
-        u.serialize(:id, :username, :email)
+      users = User.all.map do |u|
+        u.serialize(:id, :username, :email, :is_admin)
       end
-      write_res_as_json({ users: uu })
+      write_res_as_json(users: users)
     end
 
     on get, 'username/:username' do |username|
       u = User.fetch_by_username(username)
-      user = u.serialize(:id, :username, :email)
-      write_res_as_json({ user: u })
+      user = u.serialize(:id, :username, :email, :is_admin)
+      write_res_as_json(user: user)
     end
 
     on get, 'id/:id' do |id|
       u = User.[](id.to_s)
       user = u.serialize(:id, :username, :email)
-      write_res_as_json({ user: u })
+      write_res_as_json(user: user)
     end
 
-    on put, 'id/:id/edit' do |id|
+    on put, 'id/:id' do |id|
       body = parse_req_as_json
       begin
-        u = User.find(id)
-        u.save if u.update(body)
-        set_response_status(204)
+        user = User.[](id)
+        user.save if user.update(body)
       rescue => exception
         set_response_status(422)
         res.write(exception)
       end
+      set_response_status(201)
+      write_res_as_json(token: encode_data(user))
+    end
+
+    on delete, 'id/:id' do |id|
+      remove_content_type_headers
+      user = User.[](id)
+      user.destroy
+      set_response_status(204)
     end
   end
 end

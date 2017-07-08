@@ -48,7 +48,8 @@ class RackTest
 
   def test_update_user_success
     new_username = { username: 'updated' }
-    put "/users/id/#{@user.id}/edit", new_username.to_json, @jwt_admin
-    assert_equal(204, res.status)
+    put "/users/id/#{@user.id}", new_username.to_json, @jwt_admin
+    assert_equal(201, res.status)
+    assert_equal(true, res_as_json['token'].present?)
   end
 end
