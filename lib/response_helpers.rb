@@ -3,6 +3,10 @@ module ResponseHelpers
     res.headers['Content-Type'] = 'application/json'
   end
 
+  def remove_content_type_headers
+    res.headers.delete('Content-Type')
+  end
+
   def set_response_status(code)
     res.status = code
   end
