@@ -37,9 +37,9 @@ UsersCtrl = Brasil.new do
     end
 
     on delete, 'id/:id' do |id|
-      remove_content_type_headers
       user = User.[](id)
       user.destroy
+      remove_content_type_headers
       set_response_status(204)
     end
   end
