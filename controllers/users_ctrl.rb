@@ -13,6 +13,12 @@ UsersCtrl = Brasil.new do
       write_res_as_json({ users: uu })
     end
 
+    on get, 'username/:username' do |username|
+      u = User.fetch_by_username(username)
+      user = u.serialize(:id, :username, :email)
+      write_res_as_json({ user: u })
+    end
+
     on get, 'id/:id' do |id|
       u = User.[](id.to_s)
       user = u.serialize(:id, :username, :email)
@@ -29,12 +35,6 @@ UsersCtrl = Brasil.new do
         set_response_status(422)
         res.write(exception)
       end
-    end
-
-    on get, 'username/:username' do |username|
-      u = User.fetch_by_username(username)
-      user = u.serialize(:id, :username, :email)
-      write_res_as_json({ user: u })
     end
   end
 end
