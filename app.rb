@@ -13,8 +13,7 @@ Brasil.define do
   # no namespace # no auth needed
   on get, root do
     set_response_as_json
-    root_message = { root_path: true }
-    res.write root_message.to_json
+    write_res_as_json(root_path: true)
   end
 
   # auth/ # no auth needed
