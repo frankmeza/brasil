@@ -34,14 +34,11 @@ class User
     find(id)
   end
 
-  def get_data
-    # idea here: change the encoded data to be the id, and is_admin
-    # maybe this would be more stable, what with possible name changes
-    { username: username, email: email }
-  end
-
-  # maybe this is better for encoding data instead of actual user data
   def data_for_token
     { id: id, is_admin: is_admin }
+  end
+
+  def get_data
+    { username: username, email: email }
   end
 end
