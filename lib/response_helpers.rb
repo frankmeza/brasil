@@ -8,6 +8,6 @@ module ResponseHelpers
   end
 
   def write_res_as_json(object)
-    object.to_json
+    res.write(object.to_json)
   end
 end
