@@ -52,4 +52,9 @@ class RackTest
     assert_equal(201, res.status)
     assert_equal(true, res_as_json['token'].present?)
   end
+
+  def test_delete_user
+    delete "/users/id/#{@user.id}", {}, @jwt_admin
+    assert_equal(204, res.status)
+  end
 end
