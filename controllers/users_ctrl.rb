@@ -1,7 +1,5 @@
 # users_controller
 
-require_relative './_ctrl_dependencies'
-
 UsersCtrl = Brasil.new do
   on true do
     set_response_as_json
@@ -20,7 +18,7 @@ UsersCtrl = Brasil.new do
     end
 
     on get, 'id/:id' do |id|
-      u = User.[](id.to_s)
+      u = User.[](id)
       user = u.serialize(:id, :username, :email)
       write_res_as_json(user: user)
     end
