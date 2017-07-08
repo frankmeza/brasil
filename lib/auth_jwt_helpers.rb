@@ -19,8 +19,9 @@ module AuthJwtHelpers
 
   def is_valid_token?(token)
     data = decode_jwt_token(token)
-    user = User.fetch(data[0]['email'])
-    user.username == data[0]['username']
+    user_id_from_token = data[0]['id']['$oid']
+    user = User.[](user_id_from_token)
+    user.id.to_s == user_id_from_token
   end
 
   def is_valid_admin_token?(token)
