@@ -46,6 +46,7 @@ class RackTest
     assert_equal(@user.username, res_as_json['user']['username'])
   end
 
+  # PUT /users/id/:id
   def test_update_user_success
     new_username = { username: 'updated' }
     put "/users/id/#{@user.id}", new_username.to_json, @jwt_admin
@@ -53,6 +54,7 @@ class RackTest
     assert_equal(true, res_as_json['token'].present?)
   end
 
+  # DELETE /users/id/:id
   def test_delete_user
     delete "/users/id/#{@user.id}", {}, @jwt_admin
     assert_equal(204, res.status)
