@@ -21,9 +21,9 @@ UsersCtrl = Brasil.new do
 
     on put, 'id/:id/edit' do |id|
       body = parse_req_as_json
-      u = User.find(id)
       begin
-        u.update(body)
+        u = User.find(id)
+        u.save if u.update(body)
         set_response_status(204)
       rescue => exception
         set_response_status(422)
