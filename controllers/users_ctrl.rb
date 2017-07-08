@@ -32,8 +32,8 @@ UsersCtrl = Brasil.new do
         set_response_status(422)
         res.write(exception)
       end
-      set_response_status(201)
-      write_res_as_json(token: encode_data(user.data_for_token))
+      remove_content_type_headers
+      set_response_status(204)
     end
 
     on delete, 'id/:id' do |id|
