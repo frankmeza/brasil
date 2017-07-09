@@ -26,8 +26,8 @@ module AuthJwtHelpers
     user.id.to_s == user_id_from_token
   end
 
-  def respond_with(status, message_key)
-    as_json = {"Content-Type" => "application/json"}
-    [status.to_s, as_json, [Message.get_msg(message_key).to_json]]
+  def respond_with(status, message_key, headers = {})
+    headers ||= {"Content-Type" => "application/json"}
+    [status.to_s, headers, [Message.get_msg(message_key).to_json]]
   end
 end
