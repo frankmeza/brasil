@@ -14,7 +14,7 @@ get a mongo database up and running
 
 set a $JWT_SECRET in `secrets.rb`, this is protected by `.gitignore`
 
-### routing and structure
+### Routing and Structure
 
 From the command line, you run `rackup`, which kicks over the `config.ru` like your mom's old reliable 2003 Camry. You can also use `shotgun` if you have that gem installed for quick server reload while developing.
 
@@ -46,7 +46,7 @@ end
 
 Great! So we have Brasil ready to handle our routing. Let's take a look at our first route:
 
-```
+``` ruby
 Brasil.define do
   # no namespace # no auth needed
   on get, root do
@@ -81,13 +81,21 @@ on post, 'login' do
 end
 ```
 
-The implication here is that we only got to this handler by way of `app.rb` handling a request having a route which matches 'auth', regardless of the HTTP method involved. So, taking a step back this is a manual way of namespacing the routes within `app.rb`; anything that we want to handle having to do with authentication is game for going into `AuthCtrl`. You get it? Cool.
+The implication here is that we only got to this handler by way of `app.rb` handling a request having a route which matches 'auth', regardless of the HTTP method involved. So, taking a step back this is a manual way of namespacing the routes within `app.rb`; anything that we want to handle having to do with authentication is game for going into `AuthCtrl`. You get it? Let's dig in a but more on this route. In order to win the token, we must:
 
-Very quickly, this is where the `Shield` gem comes into play - we match the login params to an existing user using Shield's `#login` function, like this:
+``` ruby
+# POST 'auth/login'
+{
+  "login": "alpha",
+  "password": "password"
+}
+```
+
+This is where the `Shield` gem comes into play - we match the login params to an existing user using Shield's `#login` function, like this:
 
 ``` ruby
 if login(User, body['login'], body['password'])
-  #... write response, and dole out a JWT token
+  #... write happy success response, and dole out a victory JWT token
 else
   #... horrible bad stuff
 end
@@ -95,6 +103,15 @@ end
 
 This code is hopefully crytal clear, and as a small plain ol' Ruby library handling authentication (and helping out with authorization elsewhere), Shield is pretty great. So now, we've authenticated a user and given out the JWT token for use as a request header for subsequent requests.
 
+We see that the one accepted param`"login"` is used instead of `"email"` or `"username"` and this is because it can be either one! In `models/user.rb` we have:
+
+``` ruby
+def self.fetch(identifier)
+  where(email: identifier).first || where(username: identifier).first
+end
+```
+
+Commence happy dance as we all know users will remember the one but not the one that they need to use to login...
 
 
 
