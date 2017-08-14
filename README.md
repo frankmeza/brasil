@@ -1,6 +1,6 @@
 # Brasil
 
-## A [Cuba](cuba.is) JSON API with JWT authentication and authorization
+## A [Cuba](cuba.is) JSON API with JWT Authentication and Authorization
 
 - [Shield](https://github.com/cyx/shield) for initial authentication
 - [JWT](https://github.com/jwt/ruby-jwt) (JSON web token) for authenticating API access
@@ -8,7 +8,7 @@
 - tested with [Minitest](http://docs.seattlerb.org/minitest/index.html)
 - modular design
 
-### setup
+### Setup TODO
 
 get a mongo database up and running
 
@@ -34,7 +34,7 @@ Brasil.plugin Shield::Helpers
 
 Then we hit the routes. But first let's talk about the model `Brasil` first.
 
-Brasil inherits directly from Cuba, and includes some modules. These modules are defined in the `lib/` directory, and are a few small collections of helper methods, which can be shared amongst the controllers, but I thought would be cool to define as shared behavior and then included. These have to do with handling requests, responses, and authentication.
+Brasil inherits directly from Cuba, and includes some modules. These modules are defined in the `lib/` directory, and are a few small collections of helper methods, which can be shared amongst the controllers, but I thought would be cool to define as shared behavior and then include them as modules. These modules have to do with handling requests, responses, and authentication.
 
 ``` ruby
 class Brasil < Cuba
@@ -55,7 +55,9 @@ Brasil.define do
   end
 ```
 
-We see a `get` matcher, alongside a `root` matcher, and then the actual handling itself, in which we set the response content type to JSON, as well as write a JSON response. This is obviously a sanity check route, returning `{ root_path: true }`, with a few pretty helper methods. Moving on, we finally get to something more interesting. Next, we see:
+We see a `get` matcher, alongside a `root` matcher, and then the actual handling itself, in which we set the response content type to JSON, as well as write a JSON response. This is obviously a sanity check route, returning `{ root_path: true }`, with a few pretty helper methods. We would hit this with `GET '/'`.
+
+Moving on, we finally get to something more interesting. Next, we see:
 
 ``` ruby
 # auth/ # no auth needed
