@@ -5,17 +5,17 @@ require_relative '../app'
 require_relative '../dependencies'
 require 'minitest/reporters'
 require 'minitest/autorun'
-require 'factory_girl'
+require 'factory_bot'
 require 'rack/test'
 require 'faker'
 
 Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new ]
-FactoryGirl.definition_file_paths = %w{ ./test/factories }
-FactoryGirl.find_definitions
+FactoryBot.definition_file_paths = %w{ ./test/factories }
+FactoryBot.find_definitions
 
 class RackTest < MiniTest::Test
   include Rack::Test::Methods
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
 
   def app
     Brasil
