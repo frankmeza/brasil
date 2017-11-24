@@ -1,13 +1,13 @@
 development:
   sessions:
     default:
-      database: auth_with_cuba_development
+      database: brasil
       hosts:
         - localhost:27017
 
 test:
   sessions:
     default:
-      database: auth_with_cuba_development_test
+      database: brasil_test
       hosts:
         - localhost:27017

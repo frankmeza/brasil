@@ -9,4 +9,5 @@ gem 'jwt'
 gem 'factory_bot'
 gem 'shotgun'
 gem 'faker'
+gem 'pry'
 

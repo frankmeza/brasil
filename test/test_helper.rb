@@ -23,6 +23,7 @@ class RackTest < MiniTest::Test
 
   def clean_data
     Mongoid::Config.purge!
+    User.all.delete
   end
 
   def login_this(user)
