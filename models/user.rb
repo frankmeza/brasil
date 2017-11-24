@@ -3,7 +3,7 @@ require_relative '../lib/serializer'
 class User
   include Shield::Model
   include Mongoid::Document
-  include Serializer
+  include ::Serializer
 
   field :is_admin, type: Boolean, default: false
   field :email, type: String
