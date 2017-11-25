@@ -14,7 +14,9 @@ class RackTest
 
   # GET /expenses
   def test_expenses_root
+    expenses = create_list(:expense, 3)
     get '/expenses', {}, @jwt_admin
     assert_equal(200, res.status)
+    assert_equal(expenses.size, res_as_json['expenses'].size)
   end
 end
