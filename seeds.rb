@@ -41,7 +41,7 @@ end
 10.times do
   Expense.create!(
     vendor: Faker::Company.name,
-    amount: Faker::Number.number(10),
+    amount: Faker::Number.number(3),
     date: Faker::Time.between(DateTime.now - 100, DateTime.now)
   )
 end
