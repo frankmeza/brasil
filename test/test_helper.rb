@@ -38,4 +38,7 @@ class RackTest < MiniTest::Test
   def res_as_json
     JSON.parse(res.body)
   end
+
+  # useful stuff I've found that's helped while testing:
+  # http://ryanbigg.com/2014/08/add-header-to-rack-test-request
 end
