@@ -42,7 +42,8 @@ end
   Expense.create!(
     vendor: Faker::Company.name,
     amount: Faker::Number.number(3),
-    date: Faker::Time.between(DateTime.now - 100, DateTime.now)
+    date: Faker::Time.between(DateTime.now - 100, DateTime.now),
+    description: Faker::Hipster.paragraph
   )
 end
 
