@@ -28,12 +28,21 @@ alpha = User.create!(
 )
 
 # Users
-98.times do
+8.times do
   User.create!(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
     password: 'password',
     is_admin: false
+  )
+end
+
+# Expenses
+10.times do
+  Expense.create!(
+    vendor: Faker::Company.name,
+    amount: Faker::Number.number(10),
+    date: Faker::Time.between(DateTime.now - 100, DateTime.now)
   )
 end
 

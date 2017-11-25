@@ -32,4 +32,12 @@ Brasil.define do
       halt respond_with(403, 'admin_invalid')
     end
   end
+
+  on 'expenses' do
+    if is_valid_admin_token?(env['HTTP_JWT_TOKEN'])
+      run ExpensesCtrl
+    else
+      halt respond_with(403, 'admin_invalid')
+    end
+  end
 end
