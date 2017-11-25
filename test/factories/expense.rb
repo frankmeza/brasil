@@ -3,5 +3,6 @@ FactoryBot.define do
     vendor { Faker::Company.name }
     amount { Faker::Number.number(3) }
     date { Faker::Time.between(DateTime.now - 100, DateTime.now) }
+    description { Faker::Hipster.paragraph }
   end
 end

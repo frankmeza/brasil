@@ -7,6 +7,7 @@ class Expense
   field :vendor, type: String
   field :amount, type: Integer
   field :date, type: DateTime
+  field :description, type: String
   field :photo, type: String
 
   validates_each :vendor, :amount, :date do |model, attr, value|
