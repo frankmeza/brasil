@@ -10,5 +10,12 @@ ExpensesCtrl = Brasil.new do
       end
       write_res_as_json(expenses: expenses)
     end
+
+    on post, root do
+      expense = parse_req_as_json
+      Expense.create(expense)
+      set_response_status(201)
+      write_res_as_json(created: true)
+    end
   end
 end
