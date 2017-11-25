@@ -57,3 +57,5 @@ puts '##########'
 puts 'Alpha User data: #=>'
 puts alpha.get_data
 puts "JWT_TOKEN: #{AuthCtrl.encode_data(alpha.data_for_token)}"
+
+puts "There are #{Expense.all.size} expenses."
