@@ -8,6 +8,7 @@ require 'minitest/autorun'
 require 'factory_bot'
 require 'rack/test'
 require 'faker'
+require 'pry'
 
 Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new ]
 FactoryBot.definition_file_paths = %w{ ./test/factories }
