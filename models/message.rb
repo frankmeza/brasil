@@ -17,7 +17,8 @@ class Message
       credentials_invalid: 'Your login credentials are not correct.',
       jwt_missing: 'Your request header is missing the "JWT_TOKEN" header.',
       jwt_invalid: 'Your request header "JWT_TOKEN" is invalid.',
-      update_invalid: 'Update is invalid, status 422.'
+      update_invalid: 'Update is invalid, status 422.',
+      bad_request: 'There was an error saving, try again.'
     }
   end
 end
