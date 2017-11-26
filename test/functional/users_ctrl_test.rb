@@ -53,6 +53,19 @@ class RackTest
     assert_equal(204, res.status)
   end
 
+  def test_create_user_success
+    new_user = attributes_for(:user)
+    post "/users", new_user.to_json, @jwt_admin
+    assert_equal(201, res.status)
+  end
+
+  def test_create_user_fail
+    new_user = attributes_for(:user, username: 'f', email: '')
+    post "/users", new_user.to_json, @jwt_admin
+    assert_equal(422, res.status)
+    assert_equal(Message.get_msg('bad_request'), res_as_json['errors'])
+  end
+
   # DELETE /users/id/:id
   def test_delete_user
     delete "/users/id/#{@user.id}", {}, @jwt_admin

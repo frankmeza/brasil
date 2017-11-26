@@ -36,6 +36,17 @@ UsersCtrl = Brasil.new do
       set_response_status(204)
     end
 
+    on post, root do
+      body = parse_req_as_json
+      user = User.new(body)
+      if user.valid?
+        set_response_status(201)
+      else
+        set_response_status(422)
+        write_res_as_json(errors: Message.get_msg('bad_request'))
+      end
+    end
+
     on delete, 'id/:id' do |id|
       user = User.[](id)
       user.destroy
