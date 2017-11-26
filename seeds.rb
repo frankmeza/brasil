@@ -28,7 +28,7 @@ alpha = User.create!(
 )
 
 # Users
-98.times do
+10.times do
   User.create!(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
@@ -42,7 +42,9 @@ puts 'Admin data: #=>'
 puts admin.get_data
 puts "JWT_TOKEN: #{AuthCtrl.encode_data(admin.data_for_token)}"
 
+puts ''
 puts '##########'
+puts ''
 
 puts 'Alpha User data: #=>'
 puts alpha.get_data

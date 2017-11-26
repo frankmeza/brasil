@@ -4,7 +4,7 @@ module AuthJwtHelpers
   end
 
   def encode_data(data)
-    data[:exp] = Time.now.to_i + 14400 # 4 hours
+    data[:exp] = Time.now.to_i + 28800 # 8 hours
     JWT.encode(data, $JWT_SECRET, 'HS256')
   end
 

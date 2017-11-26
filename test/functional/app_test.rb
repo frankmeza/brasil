@@ -1,6 +1,6 @@
 require_relative '../test_helper.rb'
 
-class RackTest
+class AppTest < RackTest
   def test_root
     get '/'
     assert_equal(200, res.status)

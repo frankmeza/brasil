@@ -1,6 +1,6 @@
 require './dependencies'
 
-ENV['RACK_ENV'] ||= "development"
+ENV['RACK_ENV'] ||= 'development'
 Mongoid.load!("#{Dir.pwd}/config/mongoid.yml")
 
 Brasil.use Rack::Session::Cookie, secret: "foo"

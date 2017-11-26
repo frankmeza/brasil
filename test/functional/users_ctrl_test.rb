@@ -1,6 +1,6 @@
 require_relative '../test_helper.rb'
 
-class RackTest
+class UserCtrlTest < RackTest
 
   def setup
     @user = create(:user)

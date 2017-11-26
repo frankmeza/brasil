@@ -1,5 +1,3 @@
-# users_controller
-
 UsersCtrl = Brasil.new do
   on true do
     set_response_as_json
@@ -19,7 +17,7 @@ UsersCtrl = Brasil.new do
 
     on get, 'id/:id' do |id|
       u = User.[](id)
-      user = u.serialize(:id, :username, :email)
+      user = u.serialize(:id, :username, :email, :is_admin)
       write_res_as_json(user: user)
     end
 

@@ -1,5 +1,3 @@
-# auth_controller
-
 AuthCtrl = Brasil.new do
   on post, 'login' do
     set_response_as_json
