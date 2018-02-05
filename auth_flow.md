@@ -1,8 +1,10 @@
+These sequence diagrams are easily viewed (and edited) on [StackEdit](https://stackedit.io/), using [MermaidJS](https://mermaidjs.github.io/).
 
 
 ## Auth Controller
 
 ### LOGIN
+
 ```mermaid
 sequenceDiagram
 participant B as browser
@@ -23,6 +25,7 @@ Au ->> B: set HTTP status 401, and write response { error: invalid_credentials }
 ```
 
 ### LOGOUT
+
 ```mermaid
 sequenceDiagram
 participant B as browser
